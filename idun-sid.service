@@ -1,0 +1,15 @@
+[Unit]
+Description=Idun Network SID daemon
+After=network.target             
+StartLimitIntervalSec=1
+
+[Service]
+Type=simple
+Restart=always
+User=idun
+Group=idun
+Environment=IDUN_SYS_DIR=/home/idun/idun-sys 
+ExecStart=/usr/bin/idunsid
+
+[Install]
+WantedBy=multi-user.target

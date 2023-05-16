@@ -1,0 +1,21 @@
+post_install() {
+  systemctl daemon-reload
+  systemctl enable idun-sid
+  systemctl restart idun-sid
+}
+
+pre_remove() {
+  systemctl stop idun-sid
+  systemctl disable idun-sid
+}
+
+pre_upgrade() {
+  systemctl stop idun-sid
+  systemctl disable idun-sid
+}
+
+post_upgrade() {
+  systemctl daemon-reload
+  systemctl enable idun-sid
+  systemctl restart idun-sid
+}

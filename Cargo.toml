@@ -1,0 +1,41 @@
+[package]
+name = "idunsid"
+version = "1.0.0"
+description = "Network SID Device"
+keywords = ["SIDDevice", "C128", "Idun", "SID", "reSID"]
+authors = ["Wilfred Bos", "Brian Holdsworth"]
+license = "GPL-3.0-or-later"
+repository = "https://github.com/idun-project/idunSID.git"
+#default-run = "idunsid"
+edition = "2021"
+rust-version = "1.61"
+
+[dependencies]
+anyhow = "1.0.70"
+cpal="0.15.2"
+app_dirs2 = "2.5.5"
+atomicring = "1.2.9"
+async-broadcast = "0.5.1"
+auto-launch = "0.4.0"
+crossbeam-channel = "0.5.7"
+hostname = "0.3.1"
+os_info = "3.7.0"
+parking_lot = "0.12.1"
+rand = "0.8.5"
+resid-sys = { path = "resid-sys", version = "=1.0.0" }
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+single-instance = "0.3.3"
+thread-priority = "0.13.1"
+typed-builder = "0.14.0"
+byteorder = "1.3.4"
+
+[profile.dev.package.resid-sys]
+opt-level = 3
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = 3
+strip = true
