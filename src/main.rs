@@ -48,7 +48,7 @@ fn main() {
     start_sid_device_detect_thread(&device_state, &settings);
 
     loop {
-
+        thread::sleep(Duration::from_secs(1))
     }
 }
 
