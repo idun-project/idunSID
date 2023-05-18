@@ -375,7 +375,7 @@ fn generate_code(output_stream: &mut Arc<AtomicRingBuffer<Vec<u8>>>, sid_write_q
     loop {
         let mut sid_write = sid_write_queue.try_pop();
         let mut cycles: u32 = 0;
-        let mut total_bytes = 9;
+        let mut total_bytes = code_buffer.len() as u32;
         loop {
             if let Some(sidwr) = sid_write {
 
