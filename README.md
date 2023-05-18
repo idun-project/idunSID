@@ -19,6 +19,14 @@ Finally, multi-tasking with background SID tunes on an 8-bit Commodore!
 
 _Tip_: When using reSID emulation. select "Fast" as the "Sampling method" for greatly improved emulation performance on the RPi.
 
+## Installation
+
+`idunsid` is included on the latest version of the RPi image file. If it is not already installed on your SD card, then download the release package from this repository, and install it using pacman.
+
+```
+sudo pacman -U idunsid-1.0-1-armv7h.pkg.tar.zst
+```
+
 ## Development
 
 To build the source code you need to have the following tools installed: 
