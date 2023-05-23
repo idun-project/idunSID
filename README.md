@@ -1,4 +1,4 @@
-# Idunsid
+# idunSID
 
 `idunsid` is a fork of [sid-device](https://github.com/WilfredC64/sid-device), a cross-platform Network SID Device. It runs as a service on the idun-cartridge to allow SID tunes to be played from a Windows client over the network, using either emulated sound __or the real SID chip in your Commodore__.
 
