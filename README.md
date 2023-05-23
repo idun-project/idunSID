@@ -4,7 +4,7 @@
 
 _Note_: requires idun-cartridge software v1.0.2 or later.
 
-Hopefully, a [demo video]() is worth a thousand words!
+Hopefully, a [demo video](https://youtu.be/EPf45QN3PJk) is worth a thousand words!
 
 `idunsid` can be used by SID-players like:
 [ACID 64 Player Pro](https://www.acid64.com), 
