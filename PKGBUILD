@@ -11,10 +11,11 @@ provides=(idun-sid)
 install="service.install"
 
 build() {
-  cargo build --release
+  export PKG_CONFIG_SYSROOT_DIR=/usr/arm-linux-gnueabihf
+  cargo build --release --target arm-unknown-linux-gnueabihf
 }
 
 package() {
-  install -D -m 755 ../target/release/idunsid "${pkgdir}"/usr/bin/idunsid
+  install -D -m 755 ../target/arm-unknown-linux-gnueabihf/release/idunsid "${pkgdir}"/usr/bin/idunsid
   install -D -m 644 ../idun-sid.service "${pkgdir}"/etc/systemd/system/idun-sid.service
 }
