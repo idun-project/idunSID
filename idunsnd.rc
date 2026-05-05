@@ -1,0 +1,18 @@
+#!/sbin/openrc-run
+
+name="idunsnd"
+description="Idun network audio service"
+
+export IDUN_SYS_DIR="/usr/share/idun"
+command="/usr/bin/idunsnd"
+command_user="idun:idun"
+command_background="yes"
+pidfile="/run/${RC_SVCNAME}.pid"
+
+supervisor="supervise-daemon"
+respawn_delay=2
+
+depend() {
+    # This is the critical line. It will start after the cart-monitor.
+    need net cartmon
+}

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+rc-update add idunsnd default
+rc-service idunsnd start

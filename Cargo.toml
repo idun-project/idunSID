@@ -1,6 +1,6 @@
 [package]
-name = "idunsid"
-version = "1.0.0"
+name = "idunsnd"
+version = "1.0.1"
 description = "Network SID Device"
 keywords = ["SIDDevice", "C128", "Idun", "SID", "reSID"]
 authors = ["Wilfred Bos", "Brian Holdsworth"]
