@@ -13,15 +13,17 @@ options="!check"
 install="$pkgname.post-install $pkgname.post-upgrade"
 
 build() {
+	# Requires dynamic linking
+	export RUSTFLAGS="-C target-feature=-crt-static -C link-arg=-dynamic-linker=/lib/ld-musl-aarch64.so.1"
 	cd "$srcdir"/idunsnd
   	cargo build --release --locked
 }
 
 package() {
-  install -D -m 755 "$builddir"/target/release/idunsnd "${pkgdir}"/usr/bin/idunsnd
-  install -D -m 644 "$builddir"/idunsnd.rc "${pkgdir}"/etc/init.d/idunsnd
+  install -D -m 755 "$builddir"/idunsnd/target/release/idunsnd "${pkgdir}"/usr/bin/idunsnd
+  install -D -m 755 "$builddir"/idunsnd.rc "${pkgdir}"/etc/init.d/idunsnd
   install -D -m 644 "$builddir"/asound.conf  "${pkgdir}"/etc/asound.conf
 }
 sha512sums="
-f9c398ebc8e3aaadcbcfad7047a31ca4599d79111f5a7b3289479797c8afb4598f6fca994ac57024636b100191552871b3ad43d2df797da00a71aed757213e61  idunsnd-1.0.1.tar.gz
+a418c57812e3172c4ccff027b4f905eebedecdb4ad25d05b54f73649e91e6e5d1556079e5454a06a302e215b63a4cd072857a5ea43244614ff7afa3d668a8efb  idunsnd-1.0.1.tar.gz
 "
