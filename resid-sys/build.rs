@@ -1,6 +1,19 @@
-const USE_NEW_FILTER: bool = true;
+#[cfg(feature = "static-build")]
+fn main() {
+    let manifest_dir = std::env::var("CARGO_MANIFEST_DIR").unwrap();
+    
+    println!("cargo:rustc-link-search=native={}/src/autogen", manifest_dir);
+    println!("cargo:rustc-link-lib=static=resid");
+    println!("cargo:rustc-link-lib=stdc++");
+    
+    // Ensure we don't rebuild unless the static blob changes
+    println!("cargo:rerun-if-changed=src/static_gen/libresid.a");
+}
 
+#[cfg(not(feature = "static-build"))]
 fn main() -> miette::Result<()> {
+	const USE_NEW_FILTER: bool = true;
+	
     let mut src = vec![
         "src/resid10/dac.cc",
         "src/resid10/envelope.cc",

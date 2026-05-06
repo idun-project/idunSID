@@ -4,19 +4,23 @@
 #![allow(clippy::upper_case_acronyms)]
 use autocxx::prelude::*;
 
-use ffi::reSID::*;
-use std::pin::Pin;
-
+#[cfg(not(feature = "static-build"))]
 include_cpp! {
     #include "resid10/sid.h"
     safety!(unsafe)
     generate!("reSID::SID")
 }
 
+#[cfg(feature = "static-build")]
+include!("autogen/autocxx-ffi-default-gen.rs");
+
+use ffi::reSID::SID;
+use std::pin::Pin;
+
 const FILTER_SCALE: f64 = 0.97;
 
 pub struct Sid {
-    sid: cxx::UniquePtr<SID>
+    sid: cxx::UniquePtr<SID>,
 }
 
 impl Default for Sid {
@@ -28,7 +32,7 @@ impl Default for Sid {
 impl Sid {
     pub fn new() -> Self {
         let mut sid = Sid {
-            sid: SID::new().within_unique_ptr()
+            sid: SID::new().within_unique_ptr(),
         };
         // always call adjust_filter_bias to ensure all buffers are initialized
         sid.adjust_filter_bias(0.0);
@@ -43,9 +47,21 @@ impl Sid {
         SID::set_chip_model(self.sid.pin_mut(), model);
     }
 
-    pub fn set_sampling_parameters(&mut self, clock_freq: f64, method: sampling_method, sample_freq: f64) -> bool {
+    pub fn set_sampling_parameters(
+        &mut self,
+        clock_freq: f64,
+        method: sampling_method,
+        sample_freq: f64,
+    ) -> bool {
         let pass_freq = sample_freq * 0.9 / 2.0;
-        SID::set_sampling_parameters(self.sid.pin_mut(), clock_freq, method, sample_freq, pass_freq, FILTER_SCALE)
+        SID::set_sampling_parameters(
+            self.sid.pin_mut(),
+            clock_freq,
+            method,
+            sample_freq,
+            pass_freq,
+            FILTER_SCALE,
+        )
     }
 
     pub fn adjust_sampling_frequency(&mut self, sample_freq: f64) {
@@ -96,7 +112,7 @@ impl Sid {
                 Pin::new(&mut delta),
                 buffer.as_mut_ptr() as *mut c_short,
                 c_int::from(buffer.len() as i32),
-                c_int::from(interleave)
+                c_int::from(interleave),
             )
         };
         (i32::from(offset) as usize, i32::from(delta) as u32)

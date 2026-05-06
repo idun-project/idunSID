@@ -19,6 +19,9 @@ cxx = "1.0"
 autocxx-build = "0.25.0"
 miette = { version="5.7.0", features = [ "fancy" ] }
 
+[features]
+static-build = []
+
 [profile.release]
 panic = "abort"
 codegen-units = 1
