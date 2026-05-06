@@ -6,7 +6,9 @@ fn main() -> miette::Result<()> {
 	    
 	    println!("cargo:rustc-link-search=native={}/src/autogen", manifest_dir);
 	    println!("cargo:rustc-link-lib=static=resid");
-	    println!("cargo:rustc-link-lib=stdc++");
+		// Force the linker to look for the SHARED version of these system libs
+	    println!("cargo:rustc-link-lib=dylib=asound");
+	    println!("cargo:rustc-link-lib=dylib=stdc++");
 	    // Ensure we don't rebuild unless the static blob changes
 	    println!("cargo:rerun-if-changed=src/static_gen/libresid.a");
 		return Ok(())

@@ -23,5 +23,5 @@ package() {
   install -D -m 644 "$builddir"/asound.conf  "${pkgdir}"/etc/asound.conf
 }
 sha512sums="
-6f4dd8aff91aa66a2480f3d1be5f3b02aa771352d688bbe286ad9aee6945221c068660c4c98f3e2ec8c6b362e0909e6b75428a1bf19afd41d013933b8da86c64  idunsnd-1.0.1.tar.gz
+f9c398ebc8e3aaadcbcfad7047a31ca4599d79111f5a7b3289479797c8afb4598f6fca994ac57024636b100191552871b3ad43d2df797da00a71aed757213e61  idunsnd-1.0.1.tar.gz
 "
