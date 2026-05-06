@@ -13,7 +13,8 @@ options="!check"
 install="$pkgname.post-install $pkgname.post-upgrade"
 
 build() {
-  cargo build --release --locked
+	cd "$srcdir"/idunsnd
+  	cargo build --release --locked
 }
 
 package() {
@@ -22,5 +23,5 @@ package() {
   install -D -m 644 "$builddir"/asound.conf  "${pkgdir}"/etc/asound.conf
 }
 sha512sums="
-cd26bbbc35547003789d293dfd9cff1f9a99f695fa43514fb1587c0a29c815a4b1e47c72539be5399bf3137f432cef8e86709636373a798ceb94f2adf6421ddf  idunsnd-1.0.1.tar.gz
+088cca07d7884b35cd4c451c00676436402a979217fc832c14fbd62c8d676d1f062205309ea6b567db9b1f9b25216c4258016cf1a5f77519aab570eda53f9a43  idunsnd-1.0.1.tar.gz
 "
