@@ -16,7 +16,7 @@ use byteorder::{BigEndian, ReadBytesExt, WriteBytesExt};
 use crate::sid_device_server::player::{PlayerCommand, SidWrite};
 
 use std::os::unix::net::UnixDatagram;
-pub const NMIPORT: &str = "/tmp/idunmm-nmi";
+pub const NMIPORT: &str = "/run/idun/cartmon";
 
 pub static CODER_ERROR: AtomicBool = AtomicBool::new(false);
 
