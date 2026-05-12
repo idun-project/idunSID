@@ -1,6 +1,6 @@
 pkgname=idunsnd
 pkgver=1.0.1
-pkgrel=0
+pkgrel=1
 pkgdesc="Network SID daemon service for Idun"
 arch="aarch64"
 url="https://github.com/idun-project/idunSID"
