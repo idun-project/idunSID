@@ -23,6 +23,7 @@ package() {
   install -D -m 755 "$builddir"/idunsnd/target/release/idunsnd "${pkgdir}"/usr/bin/idunsnd
   install -D -m 755 "$builddir"/idunsnd.rc "${pkgdir}"/etc/init.d/idunsnd
   install -D -m 644 "$builddir"/asound.conf  "${pkgdir}"/etc/asound.conf
+  install -D -m 755 "$builddir"/audio.sh  "${pkgdir}"/usr/bin/audio
 }
 sha512sums="
 3686c4793998d29c1f58bdb853ed565c85f3c07e38c99ddcb58bc52dfb4acbfdb63f7f9a3cf9931f6db2279c3363736c73a97ca960e5a209e515bc258727a709  idunsnd-1.0.1.tar.gz
